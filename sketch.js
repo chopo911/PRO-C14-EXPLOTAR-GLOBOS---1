@@ -33,7 +33,13 @@ function setup() {
   
 
   
-   score = 0    
+   score = 0  
+   
+   red1=new Group();
+   green1=new Group();
+   blue1=new Group();
+   pink1=new Group();
+   arrow1=new Group();
 }
 
 function draw() {
@@ -57,7 +63,7 @@ function draw() {
   //Descomenta la opción correcta para obtener un número aleatorio entre 1 y 4 
    select_balloon = Math.round(random(1,4));
    
-   if (World.frameCount % 100 == 0) {
+  if (World.frameCount % 100 == 0) {
 
     if (select_balloon==1){
       redBalloon();
@@ -72,9 +78,32 @@ function draw() {
       pinkBalloon();
     }
   
-}
+  }
     
+  if (arrow1.isTouching(red1)){
+    red1.destroyEach();
+    arrow1.destroyEach();
+    score=score+1;
+  }
+  if (arrow1.isTouching(green1)){
+    green1.destroyEach();
+    arrow1.destroyEach();
+    score=score+1;
+  }
+  if (arrow1.isTouching(blue1)){
+    blue1.destroyEach();
+    arrow1.destroyEach();
+    score=score+1;
+  }
+  if (arrow1.isTouching(pink1)){
+    pink1.destroyEach();
+    arrow1.destroyEach();
+    score=score+1;
+  }
+
   drawSprites();
+
+  text("Score = " + score,300,50);
 }
 
 
@@ -87,6 +116,7 @@ function draw() {
   arrow.velocityX = -4;
   arrow.lifetime = 100;
   arrow.scale = 0.3;
+  arrow1.add(arrow);
 }
 
 function redBalloon() {
@@ -95,6 +125,7 @@ function redBalloon() {
   red.velocityX = 3;
   red.lifetime = 150;
   red.scale = 0.1;
+  red1.add(red);
 }
 
 
@@ -104,6 +135,7 @@ function blueBalloon() {
   blue.velocityX = 3;
   blue.lifetime = 150;
   blue.scale = 0.1;
+  blue1.add(blue);
 }
 
 function greenBalloon() {
@@ -112,6 +144,7 @@ function greenBalloon() {
   green.velocityX = 3;
   green.lifetime = 150;
   green.scale = 0.1;
+  green1.add(green);
 }
 
 function pinkBalloon() {
@@ -119,5 +152,6 @@ function pinkBalloon() {
   pink.addImage(pink_balloonImage);
   pink.velocityX = 3;
   pink.lifetime = 150;
-  pink.scale = 1
+  pink.scale = 1;
+  pink1.add(pink);
 }
